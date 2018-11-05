@@ -1,1 +1,2 @@
-## Before running any of the network samples be sure to run "vagrant up".  This will take a few minutes
+The IOS-XR Vagrant image was built utilizing Hank Preston's github tool at 
+https://github.com/hpreston/vagrant_net_prog under box_building.
