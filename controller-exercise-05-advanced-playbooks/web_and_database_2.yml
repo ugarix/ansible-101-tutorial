@@ -70,7 +70,7 @@
   - name: Deliver MySQL Status
     fetch:
       src: ~/mysqlstatus.txt
-      dest: mysqlstatus.txt
+      dest: fetched_status.txt
       flat: yes
     tags: 
       - mysqlstatus
@@ -80,6 +80,5 @@
     service:
       name: mongod
       state: started
-
 
 

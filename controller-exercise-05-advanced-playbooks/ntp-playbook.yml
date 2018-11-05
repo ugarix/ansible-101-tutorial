@@ -12,8 +12,20 @@
   - name: Install ntp on Ubuntu targets if installed
     apt:
       name: ntp
-      state: present
+      state: latest
     when: ansible_os_family == "Debian"
+
+  - name: Remove chrony on RedHat targets if installed
+    yum:
+      name: chrony
+      state: absent
+    when: ansible_os_family == "RedHat"
+
+  - name: Install ntp on CentOS targets if installed
+    yum:
+      name: ntp
+      state: latest
+    when: ansible_os_family == "RedHat"
 
   - name: Push the NTP config
     template:
