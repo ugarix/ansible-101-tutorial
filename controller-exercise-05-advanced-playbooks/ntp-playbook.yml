@@ -12,7 +12,7 @@
   - name: Install ntp on Ubuntu targets if installed
     apt:
       name: ntp
-      state: presetn
+      state: present
     when: ansible_os_family == "Debian"
 
   - name: Push the NTP config
