@@ -45,6 +45,4 @@ ansible_class_centos7_1
 ansible_class_ubuntu_2
 ansible_class_centos7_2
 
-# If we didn't have DNS reachability to the devices under management then we could modify
-# the hosts file to have this data.  An example is as follows but likely does not
-# match your environment.  This would be added to the hosts file.
+# With this in place we can also run commands on all systems that are webservers and dbservers too
