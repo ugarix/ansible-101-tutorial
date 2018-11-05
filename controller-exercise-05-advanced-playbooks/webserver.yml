@@ -26,7 +26,7 @@
     when: ansible_os_family == "Debian"
 
   - name: Enable & start Apache webserver on RedHat hosts
-    apt:
+    service:
       name: httpd
       state: started
       enabled: yes
