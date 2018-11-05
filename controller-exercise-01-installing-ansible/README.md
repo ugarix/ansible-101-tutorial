@@ -18,10 +18,10 @@ apt install ansible
 # other containers.
 
 ssh-keygen
-sh-copy-id ansible_class_ubuntu_1  ### Password is "pass" when prompted
-sh-copy-id ansible_class_ubuntu_2  ### Password is "pass" when prompted
-sh-copy-id ansible_class_centos7_1 ### Password is "pass" when prompted
-sh-copy-id ansible_class_centos7_2 ### Password is "pass" when prompted
+ssh-copy-id ansible_class_ubuntu_1  ### Password is "pass" when prompted
+ssh-copy-id ansible_class_ubuntu_2  ### Password is "pass" when prompted
+ssh-copy-id ansible_class_centos7_1 ### Password is "pass" when prompted
+ssh-copy-id ansible_class_centos7_2 ### Password is "pass" when prompted
 
 # At this point you should have the following
 # 1. 5 Docker containers running.  2 are ubuntu and 2 are centos
