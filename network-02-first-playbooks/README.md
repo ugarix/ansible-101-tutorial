@@ -17,16 +17,3 @@ This will show the running config of routers
 ```
 ansible-playbook 03-show-run.yaml
 ```
-
-## 04-config-backup.yaml
-This utilizes the built in config-backup module to save the config to file
-```
-ansible-playbook 04-config-backup.yaml
-```
-
-## 05-config-backup-renamed.yaml
-This is a manual way of getting the running config, saving to a variable, then copying the
-variable to an output file.
-```
-ansible-playbook 05-config-backup-renamed.yaml
-```
