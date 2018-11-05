@@ -30,8 +30,8 @@ ansible_class_centos7_2
 # based.  Grouping for this example is done based on the package format. You can run ad-hoc
 # commands against a group from the hosts file as well.
 
-ansible -m ping -i hosts deb
-ansible -m ping -i hosts rpm
+ansible -m ping -i hosts-1 deb
+ansible -m ping -i hosts-1 rpm
 
 # It's also likely that a device under management can be a member of multiple groups.  Now 
 # modify the hosts file to add dbservers & webservers.  Include one of each different
