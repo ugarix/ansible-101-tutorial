@@ -1,0 +1,24 @@
+---
+- hosts: cisco
+  gather_facts: yes
+  connection: local 
+
+  tasks:
+  - name: GET CREDENTIALS
+    include_vars: secrets.yaml
+
+  - name: DEFINE CONNECTION
+    set_fact:
+       connection:
+          authorize: yes
+          host: "{{ inventory_hostname }}"
+          username: "{{ creds['username'] }}"
+          password: "{{ creds['password'] }}"
+          auth_pass: "{{ creds['auth_pass'] }}"
+
+  - name: Backup current switch config (ios)
+    ios_config:
+      provider: "{{ connection }}"
+      backup: yes
+    # register: backup_ios_location
+    # when: ansible_network_os == 'ios'

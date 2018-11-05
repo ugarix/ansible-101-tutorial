@@ -1,0 +1,30 @@
+---
+- hosts: cisco
+  gather_facts: yes
+  connection: local 
+
+
+  tasks:
+  - name: GET CREDENTIALS
+    include_vars: secrets.yaml
+
+  - name: DEFINE CONNECTION
+    set_fact:
+       connection:
+          authorize: yes
+          host: "{{ inventory_hostname }}"
+          username: "{{ creds['username'] }}"
+          password: "{{ creds['password'] }}"
+          auth_pass: "{{ creds['auth_pass'] }}"
+
+  - name: show running config
+    ios_command:
+      provider: "{{ connection }}"
+      commands:
+        - show run
+    register: config
+
+  - name: Save output to backup folder
+    copy:
+      content: "{{ config.stdout[0] }}"
+      dest: "./backup/config_{{ inventory_hostname, lookup('pipe', 'date +%Y%m%d%H%M%S') }}.txt" 

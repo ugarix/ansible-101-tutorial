@@ -1,0 +1,22 @@
+---
+- hosts: cisco
+  gather_facts: no
+  connection: local
+  vars:
+    provider:
+      port: 2222
+      host: 127.0.0.1
+      username: vagrant
+      password: vagrant
+      timeout: 180
+
+  tasks:
+
+  - name: show running config
+    ios_command:
+      provider: "{{ provider }}"
+      commands:
+        - show run
+    register: config
+
+  - debug: msg="{{ config.stdout }}"

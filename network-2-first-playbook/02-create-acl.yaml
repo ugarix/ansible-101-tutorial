@@ -1,0 +1,56 @@
+---
+- hosts: cisco
+  gather_facts: yes
+  connection: local 
+
+
+  tasks:
+  - name: GET CREDENTIALS
+    include_vars: secrets.yaml
+
+  - name: DEFINE CONNECTION
+    set_fact:
+       connection:
+          authorize: yes
+          host: "{{ inventory_hostname }}"
+          username: "{{ creds['username'] }}"
+          password: "{{ creds['password'] }}"
+          auth_pass: "{{ creds['auth_pass'] }}"
+
+  - name: CHECK ACLS
+    ios_command:
+      provider: "{{ connection }}"
+      commands:
+         - show ip access-list
+    register: beforeacl
+
+  - debug: var=beforeacl.stdout_lines
+
+  - name: CREATE MGMT ACL
+    ios_config:
+      provider: "{{ connection }}"
+      lines:
+        - 10 permit ip 10.10.13.0 0.0.0.255 any
+        - 20 permit ip 10.10.2.0 0.0.0.255 any
+        - 30 permit ip 10.10.21.0 0.0.0.255 any
+        - 40 deny ip any any log
+      parents: ['ip access-list extended ACL_MGMT']
+      before: ['no ip access-list extended ACL_MGMT']
+      match: exact
+
+  - name: CHECK MGMT ACLS
+    ios_command:
+      provider: "{{ connection }}"
+      commands:
+         - show ip access-list ACL_MGMT
+    register: afteracl
+
+  - debug: var=afteracl.stdout_lines
+
+  - name: APPLY MGMT ACL
+    ios_config:
+      provider: "{{ connection }}"
+      lines:
+        - ip access-group ACL_MGMT in
+      parents: ['interface GigabitEthernet3']
+      match: exact
