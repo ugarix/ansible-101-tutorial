@@ -1,0 +1,33 @@
+---
+
+- hosts: webservers
+  vars:
+    http_port: 80
+  remote_user: root
+
+  tasks:
+  - name: Install Apache webserver on Ubuntu hosts
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_os_family == "Debian"
+
+  - name: Install Apache webserver on CentoOS hosts
+    yum:
+      name: httpd
+      state: latest
+    when: ansible_os_family == "RedHat"
+
+  - name: Enable & start Apache webserver on Ubuntu hosts
+    service:
+      name: apache2
+      state: started
+      enabled: yes
+    when: ansible_os_family == "Debian"
+
+  - name: Enable & start Apache webserver on RedHat hosts
+    apt:
+      name: httpd
+      state: started
+      enabled: yes
+    when: ansible_os_family == "RedHat"
