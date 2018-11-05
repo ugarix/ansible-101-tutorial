@@ -54,12 +54,12 @@
   # This is to ensure that NTP is started
   - name: start_restart_ntp_client_ubuntu
     service:
-      name=ntpd
+      name=ntp
       state=restarted
       enabled=yes
 
   - name: start_restart_ntp_client_redhat
     service:
-      name=ntp
+      name=ntpd
       state=restarted
       enabled=yes
