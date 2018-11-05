@@ -30,4 +30,4 @@ ansible -m setup -a "filter=ansible_memory_mb" ansible_class_ubuntu_1
 # Now run this new playbook and see that it insttalls VIM on each different group even
 # though the commands are different.
 
-ansible-playbook -i hosts playbook-1.yml
+ansible-playbook -i hosts playbook-2.yml
