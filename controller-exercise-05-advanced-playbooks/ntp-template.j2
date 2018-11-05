@@ -1,0 +1,15 @@
+### NTP Config
+### Owned by Ansible.  Please do not modify
+
+driftfile /var/lib/ntp/drift
+restrict default nomodify notrap nopeer noquery
+restrict 127.0.0.1
+restrict ::1
+
+server {{ ntp_server_1 }} iburst
+server {{ ntp_server_2 }} iburst
+server {{ ntp_server_3 }} iburst
+server {{ ntp_server_4 }} iburst
+
+keys /etc/ntp/keys
+disable monitor

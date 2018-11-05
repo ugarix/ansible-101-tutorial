@@ -1,0 +1,15 @@
+[deb]
+ansible_class_ubuntu_1
+ansible_class_ubuntu_2
+
+[rpm]
+ansible_class_centos7_1
+ansible_class_centos7_2
+
+[dbservers]
+ansible_class_ubuntu_1
+ansible_class_centos7_1
+
+[webservers]
+ansible_class_ubuntu_2
+ansible_class_centos7_2

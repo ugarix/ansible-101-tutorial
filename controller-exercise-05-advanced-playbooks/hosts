@@ -1,0 +1,17 @@
+[deb]
+ansible_class_ubuntu_1
+ansible_class_ubuntu_2
+
+[rpm]
+ansible_class_centos7_1
+ansible_class_centos7_2
+
+[nodes:children]
+deb
+rpm
+
+[nodes:vars]
+ntp_server1=0.us.pool.ntp.org
+ntp_server2=1.us.pool.ntp.org
+ntp_server3=2.us.pool.ntp.org
+ntp_server4=3.us.pool.ntp.org

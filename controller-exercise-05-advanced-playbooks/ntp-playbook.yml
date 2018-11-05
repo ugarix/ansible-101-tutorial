@@ -1,0 +1,36 @@
+---
+
+- hosts: all
+
+  tasks:
+  - name: Remove chrony on Ubuntu targets if installed
+    apt:
+      name: chrony
+      state: absent
+    when: ansible_os_family == "Debian"
+
+  - name: Install ntp on Ubuntu targets if installed
+    apt:
+      name: ntp
+      state: presetn
+    when: ansible_os_family == "Debian"
+
+  - name: Push the NTP config
+    template:
+      src=ntp-template.j2
+      dest=/etc/ntp.conf
+      owner=root
+      group=root
+      mode=0644
+      backup=yes
+    notify: start_restart_ntp_client
+
+  handlers:
+
+  # This is to ensure that NTP is started
+  - name: start_restart_ntp_client
+    service:
+      name=ntpd
+      state=restarted
+      enabled=yes
+

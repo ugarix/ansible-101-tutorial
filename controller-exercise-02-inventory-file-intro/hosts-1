@@ -1,0 +1,7 @@
+[deb]
+ansible_class_ubuntu_1
+ansible_class_ubuntu_2
+
+[rpm]
+ansible_class_centos7_1
+ansible_class_centos7_2
