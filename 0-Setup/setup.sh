@@ -29,7 +29,7 @@ docker network create ansible_class_default
 
 docker-compose up -d
 
-docker-compose scale centos7=2 ubuntu=2 ansiblecontroller=1
+docker-compose -p ansible_class scale centos7=2 ubuntu=2 ansiblecontroller=1
 
 clear
 
