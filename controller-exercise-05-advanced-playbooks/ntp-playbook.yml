@@ -27,7 +27,7 @@
       state: latest
     when: ansible_os_family == "RedHat"
 
-  - name: Push the NTP config
+  - name: Push the NTP config to Ubuntu
     template:
       src=ntp-template.j2
       dest=/etc/ntp.conf
@@ -35,14 +35,31 @@
       group=root
       mode=0644
       backup=yes
-    notify: start_restart_ntp_client
+    when: ansible_os_family == "Debian"
+    notify: start_restart_ntp_client_ubuntu
+
+  - name: Push the NTP config to RedHat
+    template:
+      src=ntp-template.j2
+      dest=/etc/ntp.conf
+      owner=root
+      group=root
+      mode=0644
+      backup=yes
+    when: ansible_os_family == "RedHat"
+    notify: start_restart_ntp_client_redhat
 
   handlers:
 
   # This is to ensure that NTP is started
-  - name: start_restart_ntp_client
+  - name: start_restart_ntp_client_ubuntu
     service:
       name=ntpd
       state=restarted
       enabled=yes
 
+  - name: start_restart_ntp_client_redhat
+    service:
+      name=ntp
+      state=restarted
+      enabled=yes
