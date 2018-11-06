@@ -13,13 +13,13 @@ apt-add-repository ppa:ansible/ansible
 apt update
 apt install ansible
 ```
-Once those tasks have completed generate a key on the ansible controller.  This will be used to log into the other containers.  Accept the defaults here and don't set a password.  Copy the key to the  other containers.
+Once those tasks have completed generate a key on the ansible controller.  This will be used to log into the other containers.  Accept the defaults here and don't set a password.  Copy the key to the  other containers.  The password for ssh is "pass".
 ```
 ssh-keygen
-ssh-copy-id ansible_class_ubuntu_1  ### Password is "pass" when prompted
-ssh-copy-id ansible_class_ubuntu_2  ### Password is "pass" when prompted
-ssh-copy-id ansible_class_centos7_1 ### Password is "pass" when prompted
-ssh-copy-id ansible_class_centos7_2 ### Password is "pass" when prompted
+ssh-copy-id ansible_class_ubuntu_1
+ssh-copy-id ansible_class_ubuntu_2
+ssh-copy-id ansible_class_centos7_1
+ssh-copy-id ansible_class_centos7_2
 ```
 At this point you should have the following
 1. 5 Docker containers running.  2 are ubuntu and 2 are centos
