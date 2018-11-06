@@ -24,4 +24,4 @@
          - show ip interface brief
     register: ipbrief
 
-  - debug: var=ipbrief.stdout_lines
+   - debug: var=ipbrief.stdout_lines
